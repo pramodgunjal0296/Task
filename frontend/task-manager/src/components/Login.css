@@ -1,0 +1,108 @@
+.FullLoginContainer {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer {
+  width: 1031px;
+  height: 765px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 70px 2px gray;
+}
+.loginDetailsContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginDetails {
+  height: 504.000732421875px;
+  width: 546px;
+}
+.logoImage {
+  margin: auto;
+}
+.reworkHeading {
+  height: 31px;
+  width: 546px;
+  font-family: "Roboto";
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #000000;
+  margin-top: 30px;
+}
+.loginHeading {
+  font-family: "Roboto";
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: 21px;
+}
+
+.inputContainer {
+  display: grid;
+  justify-content: center;
+}
+.userName {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.password {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.userInputField {
+  height: 60px;
+  width: 500px;
+  left: 471.00390625px;
+  top: 479px;
+  border-radius: 10px;
+  padding: 18px 200px 18px 12px;
+  border: 1px solid #000000;
+}
+.forgotPassword {
+  font-family: Roboto;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: right;
+  margin-right: 30px;
+  margin-top: 10px;
+}
+.submitButton {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  height: 64px;
+  width: 501px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  background: #004c84;
+  display: block;
+  margin: auto;
+  margin-top: 21px;
+}

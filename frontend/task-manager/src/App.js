@@ -1,10 +1,16 @@
-import "./App.css";
+import Login from "./components/Login";
 import TaskList from "./components/TaskList";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <TaskList />
+    <div>
+      <Routes>
+        <Route path="/task" element={<TaskList />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
     </div>
   );
 }

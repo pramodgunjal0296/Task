@@ -30,13 +30,22 @@ app.use(bodyParser.json());
 
 // Task model
 const Task = mongoose.model("Task", {
-  title: String,
+  title: {
+    type: String,
+    required: true, // Ensure the title is required
+    trim: true, // Trim whitespace from the title
+  },
   description: String,
 });
 
 // Create a new task
 app.post("/tasks", async (req, res) => {
   try {
+    // Check if the task title is empty
+    if (!req.body.title || req.body.title.trim() === "") {
+      return res.status(400);
+    }
+
     const task = new Task(req.body);
     await task.save();
     res.status(201).json(task);
