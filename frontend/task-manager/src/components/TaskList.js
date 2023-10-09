@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
+import { RiFileEditLine } from "react-icons/ri";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { ImCross } from "react-icons/im";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({ title: "", description: "" });
-  const [editingTask, setEditingTask] = useState(null); // Initialize to null
+  const [editingTask, setEditingTask] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch tasks from the API
     axios.get("http://localhost:5000/tasks").then((response) => {
       setTasks(response.data);
     });
@@ -47,9 +53,20 @@ const TaskList = () => {
       alert("Task deleted Successfully");
     });
   };
+  const handleLogout = () => {
+    Cookies.remove("task||userInfo");
+    navigate("/login");
+  };
 
   return (
     <div>
+      <button
+        onClick={handleLogout}
+        title="Logout"
+        className="bg-red-500 hover:bg-red-400 m-2 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded"
+      >
+        LogOut
+      </button>
       <h1 className=" w-screen flex items-center justify-center text-3xl mt-2 font-bold">
         Task Manager
       </h1>
@@ -59,6 +76,7 @@ const TaskList = () => {
         <div>
           <div className="flex flex-row gap-2">
             <input
+              title="Title of your task"
               type="text"
               className="shadow appearance-none border  border-gray-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Title"
@@ -66,13 +84,15 @@ const TaskList = () => {
               onChange={(e) =>
                 setNewTask({ ...newTask, title: e.target.value })
               }
+              required
             />
             <p className="text-red-600">*</p>
           </div>
           <textarea
+            title="Add Description of task"
             type="text"
             rows="4"
-            class="block p-2.5 mb-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2.5 mb-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Description"
             value={newTask.description}
             onChange={(e) =>
@@ -82,6 +102,7 @@ const TaskList = () => {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={addTask}
+            title="Add Task"
           >
             Add
           </button>
@@ -129,36 +150,48 @@ const TaskList = () => {
                       />
                     </td>
                     <td>
-                      <button onClick={() => saveTask(editingTask)}>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700   text-white font-bold py-2 px-4 mt-1 mb-1 rounded"
+                        onClick={() => saveTask(editingTask)}
+                        title="save your task"
+                      >
                         Save
                       </button>
                     </td>
                     <td>
-                      <button onClick={() => cancelEditing()}>Cancel</button>
+                      <button
+                        className="bg-red-500 hover:bg-blue-700   text-white font-bold py-2 px-4 mt-1 mb-1 rounded"
+                        onClick={() => cancelEditing()}
+                        title="Cancle"
+                      >
+                        <ImCross />
+                      </button>
                     </td>
                   </>
                 ) : (
                   <>
-                    <td class="desc">
+                    <td className="desc">
                       <span>{task.title}</span>
                     </td>
-                    <td class="desc">
+                    <td className="desc">
                       <span>{task.description}</span>
                     </td>
-                    <td>
+                    <td className="flex items-center justify-center">
                       <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-yellow-600 hover:bg-yellow-500   text-white font-bold py-2 px-4 mt-1 mb-1 rounded"
                         onClick={() => startEditing(task)}
+                        title="Edit Task"
                       >
-                        Edit
+                        <RiFileEditLine />
                       </button>
                     </td>
                     <td>
                       <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 mt-1 ml-4 rounded"
                         onClick={() => deleteTask(task._id)}
+                        title="Delete Task"
                       >
-                        Delete
+                        <AiTwotoneDelete />
                       </button>
                     </td>
                   </>

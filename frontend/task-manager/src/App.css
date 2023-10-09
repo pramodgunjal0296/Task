@@ -14,16 +14,15 @@ tr {
 
 tr:hover {
   background-color: lightgray;
-  /* You can adjust this color value */
 }
 
 th {
   padding-left: 2%;
-  /* You can adjust these values according to your needs */
+
   font-weight: 500;
-  /* Adjust the font weight as needed */
+
   color: #1a202c;
-  /* Adjust the color as needed */
+
   border: 1px solid gray;
 }
 

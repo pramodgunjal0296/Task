@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdPermContactCalendar } from "react-icons/md";
-import "./Login.css";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../redux/action/authAction";
 
@@ -63,7 +63,7 @@ function Login() {
                   />
                 </div>
               </div>
-              <div classname="flex flex-col mb-6">
+              <div className="flex flex-col mb-6">
                 <label
                   htmlFor="password"
                   className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
@@ -73,17 +73,7 @@ function Login() {
                 <div className="relative">
                   <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
                     <span>
-                      <svg
-                        className="h-6 w-6"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
+                      <RiLockPasswordLine />
                     </span>
                   </div>
 
@@ -123,47 +113,6 @@ function Login() {
           </div>
         </div>
       </div>
-      {/* <div>
-        <form onSubmit={(e) => logIn(e)}>
-          <div className="FullLoginContainer">
-            <div className="loginContainer">
-              <div className="loginDetailsContainer">
-                <div className="loginDetails">
-                  <h1 className="reworkHeading">Tracking Manager</h1>
-                  <h1 className="loginHeading">Login</h1>
-                  <div className="inputContainer">
-                    <label htmlFor="userInput" className="userName">
-                      Employee ID
-                    </label>
-                    <input
-                      className="userInputField"
-                      id="employee_id"
-                      name="employee_id"
-                      type="text"
-                      placeholder="Enter EmployeeID"
-                      required
-                    />
-                  </div>
-                  <div className="inputContainer">
-                    <label htmlFor="password" className="password">
-                      Password
-                    </label>
-                    <input
-                      name="password"
-                      type="password"
-                      id="password"
-                      className="userInputField"
-                      placeholder="Enter Password"
-                    />
-                  </div>
-                  <h1 className="forgotPassword">Forgot Password ?</h1>
-                  <button className="submitButton">Login</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div> */}
     </>
   );
 }

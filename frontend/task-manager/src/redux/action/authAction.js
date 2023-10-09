@@ -20,9 +20,9 @@ export const loginRequest = (payload) => async (dispatch) => {
     if (res.status === 200) {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.data,
+        payload: res.data.token,
       });
-      Cookies.set("task||userInfo", JSON.stringify(res.data.data), {
+      Cookies.set("task||userInfo", res.data.token, {
         expires: 30,
       });
       toast.success("Logged In!");
