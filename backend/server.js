@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const corsOptions = {
@@ -11,6 +12,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const port = process.env.PORT || 5000;
 
@@ -25,9 +29,6 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-// Middleware
-app.use(bodyParser.json());
-
 // Task model
 const Task = mongoose.model("Task", {
   title: {
@@ -36,6 +37,36 @@ const Task = mongoose.model("Task", {
     trim: true, // Trim whitespace from the title
   },
   description: String,
+});
+// Define a User model (assuming you're using MongoDB with Mongoose)
+const User = mongoose.model("User", {
+  employee_id: String,
+  password: String,
+});
+
+// Secret key for JWT (should be kept secret)
+const JWT_SECRET = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xl";
+
+// Define a login route
+app.post("/login", async (req, res) => {
+  try {
+    const { employee_id, password } = req.body;
+    console.log(req.body);
+    const user = await User.findOne({ employee_id });
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.status(200).json({ token });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // Create a new task
