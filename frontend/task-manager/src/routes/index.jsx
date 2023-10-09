@@ -21,14 +21,6 @@ const RoutesData = () => {
               }
             />
           ) : (
-            //   <Route
-            //     key={key}
-            //     exact={item.exact}
-            //     path={item.path}
-            //     name={item.name}
-            //     element={item.element}
-            //   />
-            // </Route>
             <Route key={key} exact element={<PublicRoute />}>
               <Route
                 key={key}
